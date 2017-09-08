@@ -1,1 +1,11 @@
+<h2>Example of one way data binding</h2>
 <p>This is the partial for view 1.</p>
+
+<div ng-controller="MainCtrl as main">
+    <h3>Parent</h3>
+    <ul ng-repeat="item in items.list">
+      <li>{{item.value}}</li>
+    </ul>
+    <h3>Child</h3>
+    <child-comp items="items"></child-comp>
+</div>
