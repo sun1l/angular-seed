@@ -3,10 +3,9 @@
 
 <div ng-controller="MainCtrl as main">
     <h3>Parent</h3>
-    <p>{{parentValue}}</p>
     <ul ng-repeat="item in items.list">
       <li>{{item.value}}</li>
     </ul>
     <h3>Child</h3>
-    <child-comp on-change="main.updatevalue" parentvalue="parentValue" items="items"></child-comp>
+    <child-comp on-change="main.update(items)" items="items"></child-comp>
 </div>
