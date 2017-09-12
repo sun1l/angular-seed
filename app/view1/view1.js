@@ -8,9 +8,6 @@ angular.module('myApp.view1', ['ngRoute'])
     controller: 'MainCtrl'
   });
 }])
-.controller('View1Ctrl', [function() {
-  
-  }])
 .service('dataService', ['$http', function($http){
   let svc = this;
   this.items = {
@@ -36,15 +33,17 @@ angular.module('myApp.view1', ['ngRoute'])
   };
 
 }])
-.controller('MainCtrl', ['$scope', 'dataService', function($scope, dataService) {
+.controller('MainCtrl', ['$timeout', '$scope', 'dataService', function($timeout, $scope, dataService) {
   $scope.items = dataService.items;
   this.update = function(values) {
     dataService.updateItems(values);
   };
-  dataService.getItems();
+  $timeout(function(){
+        dataService.getItems();
+      }, 1000);
 }])
 .component('childComp', {
-  template: '<ul ng-repeat="item in items.list"><input ng-model="item.value"></input></ul>',
+  template: '<ul ng-repeat="item in items.list"><li><input ng-model="item.value"></input></li></ul>',
   bindings: {
     items: '<',
     onChange: '&'
@@ -53,4 +52,7 @@ angular.module('myApp.view1', ['ngRoute'])
     var ctrl = this;
     $scope.items = this.items;
   }]
-});
+})
+.controller('ModifierCtrl', ['$scope','dataService', function($scope, dataService){
+  $scope.items = dataService.items;
+}]);;

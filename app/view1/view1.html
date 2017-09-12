@@ -3,9 +3,18 @@
 
 <div ng-controller="MainCtrl as main">
     <h3>Parent</h3>
+    <h4>I show the list of items fetched by the data service.</h4>
     <ul ng-repeat="item in items.list">
       <li>{{item.value}}</li>
     </ul>
     <h3>Child</h3>
+    <h4>Change my contents to see the changes in the parent.</h4>
     <child-comp on-change="main.update(items)" items="items"></child-comp>
+</div>
+<div ng-controller="ModifierCtrl as modifier">
+  <h3>Modifier</h3>
+  <h4>Change my contents to see the changes in my sibling and its child component.</h4>
+  <ul ng-repeat="item in items.list">
+    <li><input ng-model="item.value"></input></li>
+  </ul>
 </div>
